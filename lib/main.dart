@@ -1,13 +1,11 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'login.dart';
 
 void main() {
   runApp(
-    MyApp()
-     );
+      MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -20,5 +18,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
