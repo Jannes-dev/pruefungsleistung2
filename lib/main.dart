@@ -1,13 +1,24 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
+import 'login.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MyApp()
+     );
 }
 
-class MyApp extends StatefulWidget{
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
-  _MyAppState createState() => _MyAppState();
-
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Login(),
+    );
+  }
 }
+
+
