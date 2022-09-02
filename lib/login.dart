@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'HomePage.dart';
+
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -72,7 +74,7 @@ class _LoginState extends State<Login> {
               child: TextButton(
                 onPressed: () { Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => HomePage()));},
+                  MaterialPageRoute(builder: (_) => homePage()));},
                 child: Text(
                   'Login',
                   style: TextStyle(
@@ -98,25 +100,3 @@ class _LoginState extends State<Login> {
   }
 }
 
-class HomePage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        print('MyButton was tapped!');
-      },
-      child: Container(
-        height: 50.0,
-        padding: const EdgeInsets.all(8.0),
-        margin: const EdgeInsets.symmetric(horizontal: 8.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
-          color: Colors.lightGreen[500],
-        ),
-        child: const Center(
-          child: Text('Engage'),
-        ),
-      ),
-    );
-  }
-}
