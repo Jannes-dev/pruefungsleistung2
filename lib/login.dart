@@ -13,6 +13,12 @@ class _LoginState extends State<Login> {
   final inputController = TextEditingController();
 
   @override
+  void initState(){
+    super.initState();
+
+    inputController.addListener(saveUserName);
+  }
+  @override
   void dispose(){
     inputController.dispose();
     super.dispose();
@@ -38,7 +44,6 @@ class _LoginState extends State<Login> {
                   hintText: 'Enter valid email id as abs@email.com'
                 ),
                 controller: inputController,
-                : printUserName(inputController.text),
               ),
             ),
             Padding(
@@ -87,8 +92,9 @@ class _LoginState extends State<Login> {
     );
   }
 
-  printUserName(String text) {
-    print("Username: $text");
+  void saveUserName() {
+    String inputUserName = inputController.text;
+    print("Username: $inputUserName");
   }
 }
 
