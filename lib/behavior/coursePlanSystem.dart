@@ -10,7 +10,6 @@ class CoursePlanSystem{
   static late Map<int, CoursePlan> _coursePlans;
 
   _CoursePlanSystem() {
-
   }
 
   static CoursePlanSystem createCoursePlanSystem(){

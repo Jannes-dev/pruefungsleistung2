@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
-
+import 'package:flutter/services.dart';
 
 class AddCourse extends StatefulWidget{
   AddCourse({super.key});
 
   @override
-  State<AddCourse> createState() => _AddCoursePlan();
+  State<AddCourse> createState() => _AddCourse();
 
 }
 
-class _AddCoursePlan extends State<AddCourse>{
+class _AddCourse extends State<AddCourse>{
 
   CoursePlanSystem _coursePlanSystem = CoursePlanSystem.createCoursePlanSystem();
   String _courseName = "";
   String _instructorName = "";
   int _durationInMinutes = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -80,17 +81,28 @@ class _AddCoursePlan extends State<AddCourse>{
                   bottom: 15
               ),
               child: TextFormField(
+                key: ValueKey('durationInMinutes'),
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Duration (minutes)',
                   hintText: 'Enter duration of the course',
                 ),
-                keyboardType: TextInputType.number,
-                  _durationInMinutes = value!;
-
-
+                onSaved: (value) {
+                  _durationInMinutes = value! as int;
+                }
               )
             ),
+            Padding(
+                padding: EdgeInsets.only(
+                    left: 15.0,
+                    right: 15.0,
+                    top: 15.0,
+                    bottom: 15
+                ),
+
+              )
           ],
         )
       )
