@@ -5,14 +5,14 @@ class Course {
 
   late int _id;
   late String _name;
-  late String _trainer;
+  late String _instructor;
   late int _durationInMinutes;
   late List<Goal> _goals;
 
   Course(String name, String trainer, int durationInMinutes, List<Goal> goals) {
     _id = ++_courseCounter;
     _name = name;
-    _trainer = trainer;
+    _instructor = trainer;
     _durationInMinutes = durationInMinutes;
     _goals = goals;
   }
@@ -21,7 +21,7 @@ class Course {
     _name = name;
   }
   void setTrainer(String trainer){
-    _trainer = trainer;
+    _instructor = trainer;
   }
   void setDuration(int durationInMinutes){
     _durationInMinutes = durationInMinutes;
@@ -40,7 +40,7 @@ class Course {
     return _name;
   }
   String getTrainer(){
-    return _trainer;
+    return _instructor;
   }
   int getDuration(){
     return _durationInMinutes;

@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
             ListTile(
               title: const Text('add Course'),
               onTap: (){
-                Navigator.pop(
+                Navigator.push(
                     context,
                     MaterialPageRoute(builder: (_) => AddCourse())
                 );

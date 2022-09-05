@@ -4,10 +4,14 @@ import 'package:pruefungsleistung/structure/goal.dart';
 
 class CoursePlanSystem{
 
-  static late CoursePlanSystem _coursePlanSystem;
+  static CoursePlanSystem _coursePlanSystem = new CoursePlanSystem();
 
   static late Map<int, Course> _courses;
   static late Map<int, CoursePlan> _coursePlans;
+
+  _CoursePlanSystem() {
+
+  }
 
   static CoursePlanSystem createCoursePlanSystem(){
     if(_coursePlanSystem == null){
