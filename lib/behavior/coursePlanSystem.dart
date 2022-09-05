@@ -9,7 +9,7 @@ class CoursePlanSystem{
   static late Map<int, Course> _courses;
   static late Map<int, CoursePlan> _coursePlans;
 
-  CoursePlanSystem createCoursePlanSystem(){
+  static CoursePlanSystem createCoursePlanSystem(){
     if(_coursePlanSystem == null){
       _coursePlanSystem = new CoursePlanSystem();
     }
