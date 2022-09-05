@@ -12,19 +12,10 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
 
-  final inputController = TextEditingController();
+  var _isLogin = true;
+  var _userEmail = "";
+  var _userPassword = "";
 
-  @override
-  void initState(){
-    super.initState();
-
-    inputController.addListener(saveUserName);
-  }
-  @override
-  void dispose(){
-    inputController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +29,27 @@ class _LoginState extends State<Login> {
           children: <Widget>[
 
             Padding(
+
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-              child: TextField(
+              child: TextFormField(
+                key: ValueKey('email'),
+                autocorrect: false,
+                textCapitalization: TextCapitalization.none,
+                enableSuggestions: false,
+                validator: (value) {
+                  if(value!.isEmpty || !value.contains('@')) {
+                    return 'Please enter Valid email address!';
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Email',
                   hintText: 'Enter valid email id as abs@email.com'
                 ),
-                controller: inputController,
+                onSaved: (value){
+                  _userEmail = value!;
+                },
               ),
             ),
             Padding(
@@ -55,13 +59,21 @@ class _LoginState extends State<Login> {
                 top: 15.0,
                 bottom: 15
               ),
-              child: TextField(
-              obscureText: true,
+              child: TextFormField(
+                key: ValueKey('password'),
+                validator: (String? value) {
+                  return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
+                },
+                obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                     hintText: 'Enter secure password',
                   ),
+                onSaved: (value){
+                  _userPassword = value!;
+                  print(_userPassword);
+                  },
                 ),
               ),
             Container(
@@ -74,7 +86,9 @@ class _LoginState extends State<Login> {
               child: TextButton(
                 onPressed: () { Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => homePage()));},
+                  MaterialPageRoute(builder: (_) => HomePage())
+                );
+                  },
                 child: Text(
                   'Login',
                   style: TextStyle(
@@ -94,9 +108,5 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void saveUserName() {
-    String inputUserName = inputController.text;
-    print("Username: $inputUserName");
-  }
 }
 
