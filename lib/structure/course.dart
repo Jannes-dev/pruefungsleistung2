@@ -16,6 +16,13 @@ class Course {
     _durationInMinutes = durationInMinutes;
     _goals = goals;
   }
+  Course.courseForWeekdays(){
+    _id = ++_courseCounter;
+    _name = "";
+    _instructor = "";
+    _durationInMinutes = 0;
+    _goals = [];
+  }
 
   void setName(String name){
     _name = name;

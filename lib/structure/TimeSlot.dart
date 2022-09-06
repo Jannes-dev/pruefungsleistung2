@@ -8,11 +8,11 @@ extension TimeSlotExtension on TimeSlot {
   String get value {
     switch (this) {
       case TimeSlot.midday:
-        return '12:00';
+        return 'midday';
       case TimeSlot.earlyAfternoon:
-        return '14:00';
+        return 'early afternoon';
       case TimeSlot.lateAfternoon:
-        return '16:00';
+        return 'late afternoon';
     }
   }
 }

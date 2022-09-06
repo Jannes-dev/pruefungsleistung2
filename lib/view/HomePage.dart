@@ -6,6 +6,7 @@ import 'AddCoursePlan.dart';
 import 'AddCourse.dart';
 import 'DeleteCourse.dart';
 import 'DeleteCoursePlan.dart';
+import 'WeeklyCoursePlanView.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -77,7 +78,7 @@ class HomePage extends StatelessWidget {
         body: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            for(var i = 1; i <= coursePlanSystem.getCoursePlans().length; i++)
+            for(CoursePlan coursePlan in coursePlanSystem.getWeekPlan().values)
                   Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                   child: Card(
@@ -93,14 +94,14 @@ class HomePage extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (_) => DeleteCourse()));
+                            MaterialPageRoute(builder: (_) => WeeklyCoursePlanView(coursePlan)));
                       },
                       child: SizedBox(
                         width: 200,
                         height: 50,
                         child:Center(
                           child: Text(
-                            'Week $i',
+                            'Week ' + coursePlan.getWeekNumber().toString(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.deepOrange,

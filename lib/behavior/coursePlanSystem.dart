@@ -7,7 +7,7 @@ class CoursePlanSystem{
   static CoursePlanSystem _coursePlanSystem = CoursePlanSystem._CoursePlanSystem();
 
   static Map<int, Course> _courses = {};
-  static Map<int, CoursePlan> _coursePlans = {};
+  static Map<int, CoursePlan> _weekPlan = {};
 
   CoursePlanSystem._CoursePlanSystem() {
     addCoursePlan(1);
@@ -24,7 +24,7 @@ class CoursePlanSystem{
 
   void addCoursePlan(int weekNumber){
     CoursePlan coursePlan = new CoursePlan(weekNumber);
-    _coursePlans[weekNumber] = coursePlan;
+    _weekPlan[weekNumber] = coursePlan;
   }
   void addCourse(String name, String trainer, int durationInMinutes, List<Goal> goals){
     Course course = new Course(name, trainer, durationInMinutes, goals);
@@ -32,14 +32,14 @@ class CoursePlanSystem{
   }
 
   void deleteCoursePlan(int weekNumber){
-    _coursePlans.remove(weekNumber);
+    _weekPlan.remove(weekNumber);
   }
   void deleteCourse(int id){
     _courses.remove(id);
   }
 
-  Map getCoursePlans(){
-    return _coursePlans;
+  Map getWeekPlan(){
+    return _weekPlan;
   }
   Map getCourses(){
     return _courses;
