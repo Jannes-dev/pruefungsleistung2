@@ -6,8 +6,8 @@ class CoursePlanSystem{
 
   static CoursePlanSystem _coursePlanSystem = new CoursePlanSystem();
 
-  static late Map<int, Course> _courses;
-  static late Map<int, CoursePlan> _coursePlans;
+  static Map<int, Course> _courses = {};
+  static Map<int, CoursePlan> _coursePlans = {};
 
   _CoursePlanSystem() {
   }

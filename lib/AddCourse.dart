@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:pruefungsleistung/structure/goal.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
+
 import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 
 class AddCourse extends StatefulWidget{
-  AddCourse({super.key});
+  const AddCourse({super.key});
 
   @override
   State<AddCourse> createState() => _AddCourse();
@@ -16,7 +18,18 @@ class _AddCourse extends State<AddCourse>{
   String _courseName = "";
   String _instructorName = "";
   int _durationInMinutes = 0;
+  List<Goal> _allGoals = List<Goal>.empty(growable: true);
+  List<Goal> _selectedGoals = List<Goal>.empty(growable: true);
+  Map<Goal, bool> _checkedGoals = {};
 
+
+  _AddCourse(){
+    Goal.values.forEach((goal) {
+      _allGoals.add(goal);
+      _checkedGoals[goal] = false;
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +41,7 @@ class _AddCourse extends State<AddCourse>{
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: TextFormField(
@@ -94,15 +108,37 @@ class _AddCourse extends State<AddCourse>{
                 }
               )
             ),
-            Padding(
-                padding: EdgeInsets.only(
-                    left: 15.0,
-                    right: 15.0,
-                    top: 15.0,
-                    bottom: 15
+            for (Goal goal in _allGoals)
+              CheckboxListTile(
+                title: Text(goal.value.toString()),
+                value : _checkedGoals[goal],
+                onChanged: (value) {
+                  setState(() => _checkedGoals[goal] = value!);
+                },
+              ),
+            Container(
+              height: 50,
+              width: 250,
+              decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(20)
+              ),
+              child: TextButton(
+                onPressed: () {
+                  for (Goal goal in _allGoals)
+                    if (_checkedGoals[goal] != null && _checkedGoals[goal] == true)
+                      _selectedGoals.add(goal);
+                  _coursePlanSystem.addCourse(_courseName, _instructorName, _durationInMinutes, _selectedGoals); //TODO Variablen speichern
+                },
+                child: Text(
+                  'Add course',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25
+                  ),
                 ),
-
-              )
+              ),
+            ),
           ],
         )
       )
