@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
 
-import '../structure/coursePlan.dart';
+
 import 'AddCoursePlan.dart';
 import 'AddCourse.dart';
 import 'DeleteCourse.dart';
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
         title: Text('Wochenplan'),
       ),
         drawer: Drawer(
-          //If und else für Admin rolle hinzufügen
+          //TODO If und else für Admin rolle hinzufügen
           child: ListView(
           padding: EdgeInsets.zero,
           children: [

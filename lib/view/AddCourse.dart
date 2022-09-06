@@ -1,5 +1,6 @@
 import 'package:pruefungsleistung/structure/goal.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
+import 'HomePage.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -144,6 +145,23 @@ class _AddCourse extends State<AddCourse>{
               ),
               child: TextButton(
                 onPressed: () {
+                  showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Course has been added'),
+                        content: Text(_courseName + ", " + _instructorName + ", " + _durationInMinutes.toString() + " minutes"),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => AddCourse())),
+                              child: const Text ('add another course'),
+                          ),
+                          TextButton(
+                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage())),
+                              child: const Text ('return to week plan'),
+                          ),
+                        ],
+                      )
+                  );
                   _selectedGoals.clear();
                   for (Goal goal in _allGoals) {
                     if (_checkedGoals[goal] == true) {
