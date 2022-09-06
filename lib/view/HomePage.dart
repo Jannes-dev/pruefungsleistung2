@@ -77,64 +77,41 @@ class HomePage extends StatelessWidget {
         body: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            for(var i = 1; i < coursePlanSystem.getCoursePlans().length; i++) Padding(
+            for(var i = 1; i <= coursePlanSystem.getCoursePlans().length; i++)
+                  Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                  child: Container(
-                    child: OutlinedButton(
-                      onPressed: () {  },
-                      child: Text(
-                        'Woche $i',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.deepOrange,
-                          fontSize: 25,
+                  child: Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32),
+                      side: BorderSide(
+                        color: Colors.black,
+                      ),
+                    ),
+                    child: InkWell(
+                      splashColor: Colors.lightBlueAccent.withAlpha(30),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => DeleteCourse()));
+                      },
+                      child: SizedBox(
+                        width: 200,
+                        height: 50,
+                        child:Center(
+                          child: Text(
+                            'Week $i',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.deepOrange,
+                              fontSize: 25,
+                            ),
+                          ),
                         ),
                       ),
-
                     ),
                   )
-              ),
-
-
-            Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20, ),
-                child: Container(
-                  child: OutlinedButton(
-                    style: ButtonStyle(
-
-
-                    ),
-                    onPressed: () {  },
-                    child: Text(
-                      'Woche 2',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontSize: 25,
-                      ),
-                    ),
-
-                  ),
-                )
-            ),
-            ListTile(
-              title: const Text('delete Courseplan'),
-              onTap: (){
-                Navigator.pop(
-                    context,
-                    MaterialPageRoute(builder: (_) => DeleteCoursePlan())
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('delete Course'),
-              onTap: (){
-                Navigator.pop(
-                    context,
-                    MaterialPageRoute(builder: (_) => DeleteCourse())
-                );
-              },
-            ),
+                ),
           ],
 
         ),
