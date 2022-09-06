@@ -1,16 +1,19 @@
 import 'course.dart';
 import 'weekday.dart';
+import 'timeSlot.dart';
 
 class CoursePlan{
   late int _weekNumber;
-  late Map<Weekday, Course> _coursePlan;
+  Map<Weekday,Map<TimeSlot, Course>> _coursePlan = {};
 
   CoursePlan(int weekNumber){
     _weekNumber = weekNumber;
   }
 
-  void addCourse(Weekday weekday, Course course){
-    _coursePlan[weekday] = course;
+  void addCourse(Weekday weekday, TimeSlot timeSlot, Course course){
+    Map<TimeSlot, Course> newCourse = {};
+    newCourse[timeSlot] = course;
+    _coursePlan[weekday] = newCourse;
   }
 
   int getWeekNumber(){
@@ -20,3 +23,4 @@ class CoursePlan{
     return _coursePlan;
   }
 }
+

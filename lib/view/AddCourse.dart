@@ -4,6 +4,7 @@ import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
+
 class AddCourse extends StatefulWidget{
   const AddCourse({super.key});
 
@@ -18,8 +19,8 @@ class _AddCourse extends State<AddCourse>{
   String _courseName = "";
   String _instructorName = "";
   int _durationInMinutes = 0;
-  List<Goal> _allGoals = List<Goal>.empty(growable: true);
-  List<Goal> _selectedGoals = List<Goal>.empty(growable: true);
+  List<Goal> _allGoals = [];
+  List<Goal> _selectedGoals = [];
   Map<Goal, bool> _checkedGoals = {};
 
 
@@ -36,16 +37,16 @@ class _AddCourse extends State<AddCourse>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Kurs hinzufügen'),
+        title: const Text('Kurs hinzufügen'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: TextFormField(
-                key: ValueKey('name'),
+                key: const ValueKey('name'),
                 autocorrect: false,
                 textCapitalization: TextCapitalization.none,
                 enableSuggestions: false,
@@ -55,7 +56,7 @@ class _AddCourse extends State<AddCourse>{
                   }
                   return null;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Name',
                     hintText: 'Enter name for course.'
@@ -66,18 +67,18 @@ class _AddCourse extends State<AddCourse>{
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                   left: 15.0,
                   right: 15.0,
                   top: 15.0,
                   bottom: 15
               ),
               child: TextFormField(
-                key: ValueKey('instructorName'),
+                key: const ValueKey('instructorName'),
                 validator: (String? value) {
                   return (value != null) ? 'Please enter an instructor' : null;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Instructor',
                   hintText: 'Enter name of instructor',
@@ -88,17 +89,17 @@ class _AddCourse extends State<AddCourse>{
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                   left: 15.0,
                   right: 15.0,
                   top: 15.0,
                   bottom: 15
               ),
               child: TextFormField(
-                key: ValueKey('durationInMinutes'),
+                key: const ValueKey('durationInMinutes'),
                 keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Duration (minutes)',
                   hintText: 'Enter duration of the course',
@@ -108,13 +109,31 @@ class _AddCourse extends State<AddCourse>{
                 }
               )
             ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15.0,
+                  right: 15.0,
+                  top: 15.0,
+                  bottom: 15),
+              child: Text(
+                  'Select goal:',
+                  textAlign: TextAlign.left,
+                  textScaleFactor: 1.3,
+                ),
+            ),
             for (Goal goal in _allGoals)
-              CheckboxListTile(
-                title: Text(goal.value.toString()),
-                value : _checkedGoals[goal],
-                onChanged: (value) {
-                  setState(() => _checkedGoals[goal] = value!);
-                },
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 15.0,
+                    right: 15.0,
+                ),
+                child: CheckboxListTile(
+                  title: Text(goal.value.toString()),
+                  value : _checkedGoals[goal],
+                  onChanged: (value) {
+                    setState(() => _checkedGoals[goal] = value!);
+                  },
+                ),
               ),
             Container(
               height: 50,
@@ -125,12 +144,15 @@ class _AddCourse extends State<AddCourse>{
               ),
               child: TextButton(
                 onPressed: () {
-                  for (Goal goal in _allGoals)
-                    if (_checkedGoals[goal] != null && _checkedGoals[goal] == true)
+                  _selectedGoals.clear();
+                  for (Goal goal in _allGoals) {
+                    if (_checkedGoals[goal] == true) {
                       _selectedGoals.add(goal);
+                    }
+                  }
                   _coursePlanSystem.addCourse(_courseName, _instructorName, _durationInMinutes, _selectedGoals); //TODO Variablen speichern
                 },
-                child: Text(
+                child: const Text(
                   'Add course',
                   style: TextStyle(
                       color: Colors.white,
