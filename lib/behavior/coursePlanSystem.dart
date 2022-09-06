@@ -4,17 +4,20 @@ import 'package:pruefungsleistung/structure/goal.dart';
 
 class CoursePlanSystem{
 
-  static CoursePlanSystem _coursePlanSystem = new CoursePlanSystem();
+  static CoursePlanSystem _coursePlanSystem = CoursePlanSystem._CoursePlanSystem();
 
   static Map<int, Course> _courses = {};
   static Map<int, CoursePlan> _coursePlans = {};
 
-  _CoursePlanSystem() {
+  CoursePlanSystem._CoursePlanSystem() {
+    addCoursePlan(1);
+    addCoursePlan(2);
+    addCoursePlan(3);
   }
 
   static CoursePlanSystem createCoursePlanSystem(){
     if(_coursePlanSystem == null){
-      _coursePlanSystem = new CoursePlanSystem();
+      _coursePlanSystem = CoursePlanSystem._CoursePlanSystem();
     }
     return _coursePlanSystem;
   }
