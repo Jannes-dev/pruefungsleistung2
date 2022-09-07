@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Login Page"),
+        title: Text("Login Page", style: TextStyle(fontSize: 26),),
       ),
       body: SingleChildScrollView(
         child: Column(

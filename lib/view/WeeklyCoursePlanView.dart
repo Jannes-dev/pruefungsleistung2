@@ -5,11 +5,22 @@ import 'package:pruefungsleistung/structure/weekday.dart';
 
 import '../structure/goal.dart';
 
-class WeeklyCoursePlanView extends StatelessWidget {
+class WeeklyCoursePlanView extends StatefulWidget {
+  late CoursePlan _coursePlan;
+  WeeklyCoursePlanView(CoursePlan coursePlan, {super.key}) {
+    _coursePlan = coursePlan;
+  }
+  @override
+  State<WeeklyCoursePlanView> createState() => _WeeklyCoursePlanView(_coursePlan);
+
+
+}
+
+class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView>{
   late CoursePlan _coursePlan;
   var role = "admin";
 
-  WeeklyCoursePlanView(CoursePlan coursePlan, {super.key}) {
+  _WeeklyCoursePlanView(CoursePlan coursePlan){
     _coursePlan = coursePlan;
   }
 
@@ -18,7 +29,7 @@ class WeeklyCoursePlanView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Week ${_coursePlan.getWeekNumber()}'),
+        title: Text('Week ${_coursePlan.getWeekNumber()}', style: TextStyle(fontSize: 26)),
       ),
       body: ListView(
         padding: EdgeInsets.zero,
@@ -28,7 +39,7 @@ class WeeklyCoursePlanView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: Column(
                 children: [
-                  Text(weekDay.value.toString()!.toUpperCase(),
+                  Text(weekDay.value.toString().toUpperCase(),
                       textScaleFactor: 1.3,
                       style: const TextStyle(fontWeight: FontWeight.bold)),
                   Card(

@@ -5,18 +5,19 @@ import 'HomePage.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
-
-class AddCourse extends StatefulWidget{
+class AddCourse extends StatefulWidget {
   const AddCourse({super.key});
 
   @override
   State<AddCourse> createState() => _AddCourse();
-
 }
 
-class _AddCourse extends State<AddCourse>{
+class _AddCourse extends State<AddCourse> {
 
-  CoursePlanSystem _coursePlanSystem = CoursePlanSystem.createCoursePlanSystem();
+  final formKey = GlobalKey<FormState>();
+
+  CoursePlanSystem _coursePlanSystem =
+      CoursePlanSystem.createCoursePlanSystem();
   String _courseName = "";
   String _instructorName = "";
   int _durationInMinutes = 0;
@@ -24,113 +25,102 @@ class _AddCourse extends State<AddCourse>{
   List<Goal> _selectedGoals = [];
   Map<Goal, bool> _checkedGoals = {};
 
-
-  _AddCourse(){
+  _AddCourse() {
     Goal.values.forEach((goal) {
       _allGoals.add(goal);
       _checkedGoals[goal] = false;
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('Add course'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text('Add course', style: TextStyle(fontSize: 26)),
+        ),
+        body: Form(
+            key: formKey,
+            child: SingleChildScrollView(
+            child: Column(
           children: <Widget>[
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: TextFormField(
                 key: const ValueKey('name'),
                 autocorrect: false,
-                textCapitalization: TextCapitalization.none,
                 enableSuggestions: false,
                 validator: (value) {
-                  if(value!.isEmpty) {
+                  if (value == '')
                     return 'Please enter a name';
-                  }
-                  return null;
+                  else
+                    return null;
                 },
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Name',
-                    hintText: 'Enter name for course.'
-                ),
-                onSaved: (value){
-                  _courseName = value!;
-                },
+                    hintText: 'Enter name for course.'),
+                onChanged: (value) => setState(() {
+                  _courseName = value;
+                }),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 15.0,
-                  right: 15.0,
-                  top: 15.0,
-                  bottom: 15
-              ),
+                  left: 15.0, right: 15.0, top: 15.0, bottom: 15),
               child: TextFormField(
                 key: const ValueKey('instructorName'),
-                validator: (String? value) {
-                  return (value != null) ? 'Please enter an instructor' : null;
+                validator: (value) {
+                  if (value == '')
+                    return 'Please enter an instructor';
+                  else
+                    return null;
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Instructor',
                   hintText: 'Enter name of instructor',
                 ),
-                onSaved: (value){
-                  _instructorName = value!;
-                },
-              ),
-            ),
+                onChanged: (value) =>
+                    setState(() => _instructorName = value),
+              )),
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 15.0,
-                  right: 15.0,
-                  top: 15.0,
-                  bottom: 15
-              ),
-              child: TextFormField(
-                key: const ValueKey('durationInMinutes'),
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Duration (minutes)',
-                  hintText: 'Enter duration of the course',
-                ),
-                onSaved: (value) {
-                  _durationInMinutes = value! as int;
-                }
-              )
-            ),
+                padding: const EdgeInsets.only(
+                    left: 15.0, right: 15.0, top: 15.0, bottom: 15),
+                child: TextFormField(
+                  key: const ValueKey('durationInMinutes'),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Duration (minutes)',
+                    hintText: 'Enter duration of the course',
+                  ),
+                  onChanged: (value) {
+                    setState(() {});
+                    _durationInMinutes = int.tryParse(value)!;
+                  }
+                )),
             const Padding(
               padding: EdgeInsets.only(
-                  left: 15.0,
-                  right: 15.0,
-                  top: 15.0,
-                  bottom: 15),
+                  left: 15.0, right: 15.0, top: 15.0, bottom: 15),
               child: Text(
-                  'Select goal:',
-                  textAlign: TextAlign.left,
-                  textScaleFactor: 1.3,
-                ),
+                'Select goal:',
+                textAlign: TextAlign.left,
+                textScaleFactor: 1.3,
+              ),
             ),
             for (Goal goal in _allGoals)
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 15.0,
-                    right: 15.0,
+                  left: 15.0,
+                  right: 15.0,
                 ),
                 child: CheckboxListTile(
                   title: Text(goal.value.toString()),
-                  value : _checkedGoals[goal],
+                  value: _checkedGoals[goal],
                   onChanged: (value) {
                     setState(() => _checkedGoals[goal] = value!);
                   },
@@ -140,48 +130,55 @@ class _AddCourse extends State<AddCourse>{
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(20)
-              ),
+                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
-                onPressed: () {
-                  showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Course has been added'),
-                        content: Text(_courseName + ", " + _instructorName + ", " + _durationInMinutes.toString() + " minutes"),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => AddCourse())),
-                              child: const Text ('add another course'),
-                          ),
-                          TextButton(
-                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage())),
-                              child: const Text ('return to week plan'),
-                          ),
-                        ],
-                      )
-                  );
-                  _selectedGoals.clear();
-                  for (Goal goal in _allGoals) {
-                    if (_checkedGoals[goal] == true) {
-                      _selectedGoals.add(goal);
-                    }
-                  }
-                  _coursePlanSystem.addCourse(_courseName, _instructorName, _durationInMinutes, _selectedGoals); //TODO Variablen speichern
-                },
                 child: const Text(
                   'Add course',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
+                onPressed: () {
+                  final isValid = formKey.currentState?.validate();
+
+                  if(isValid!) {
+                    formKey.currentState?.save();
+                    showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Course has been added'),
+                          content: Text("$_courseName, $_instructorName, $_durationInMinutes minutes"),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => AddCourse())),
+                              child: const Text('add another course'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => HomePage())),
+                              child: const Text('return to week plan'),
+                            ),
+                          ],
+                        ));
+                    _selectedGoals.clear();
+                    for (Goal goal in _allGoals) {
+                      if (_checkedGoals[goal] == true) {
+                        _selectedGoals.add(goal);
+                      }
+                    }
+                    _coursePlanSystem.addCourse(
+                        _courseName,
+                        _instructorName,
+                        _durationInMinutes,
+                        _selectedGoals);
+                  }
+                },
               ),
             ),
           ],
-        )
-      )
-    );
+        ))));
   }
 }
