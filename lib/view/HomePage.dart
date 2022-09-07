@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
 
 
+import '../structure/coursePlan.dart';
 import 'AddCoursePlan.dart';
 import 'AddCourse.dart';
 import 'DeleteCourse.dart';

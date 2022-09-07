@@ -5,61 +5,42 @@ import 'TimeSlot.dart';
 
 class CoursePlan {
   late int _weekNumber;
-  Map<Weekday, Map<TimeSlot, Course>> _coursePlan = {};
+  Map<Weekday, Map<TimeSlot, Course>> _coursePlan = {
+    Weekday.monday: {
+      TimeSlot.midday: Course.courseForWeekdays(),
+      TimeSlot.earlyAfternoon: Course.courseForWeekdays(),
+      TimeSlot.lateAfternoon: Course.courseForWeekdays()
+    },
+    Weekday.tuesday: {
+      TimeSlot.midday: Course.courseForWeekdays(),
+      TimeSlot.earlyAfternoon: Course.courseForWeekdays(),
+      TimeSlot.lateAfternoon: Course.courseForWeekdays()
+    },
+    Weekday.wednesday: {
+      TimeSlot.midday: Course.courseForWeekdays(),
+      TimeSlot.earlyAfternoon: Course.courseForWeekdays(),
+      TimeSlot.lateAfternoon: Course.courseForWeekdays()
+    },
+    Weekday.thursday: {
+      TimeSlot.midday: Course.courseForWeekdays(),
+      TimeSlot.earlyAfternoon: Course.courseForWeekdays(),
+      TimeSlot.lateAfternoon: Course.courseForWeekdays()
+    },
+    Weekday.friday: {
+      TimeSlot.midday: Course.courseForWeekdays(),
+      TimeSlot.earlyAfternoon: Course.courseForWeekdays(),
+      TimeSlot.lateAfternoon: Course.courseForWeekdays()
+    },
+  };
 
   CoursePlan(int weekNumber) {
     _weekNumber = weekNumber;
-    addCourseToCoursePlan(
-        Weekday.monday, TimeSlot.midday, Course.courseForWeekdays());
     addCourseToCoursePlan(Weekday.monday, TimeSlot.earlyAfternoon,
         Course('Yoga', 'Frau Hampeline', 45, [Goal.relax, Goal.stretch]));
     addCourseToCoursePlan(Weekday.monday, TimeSlot.lateAfternoon,
-        Course('Yoga', 'Frau Hampeline', 45, [Goal.relax, Goal.stretch]));
-
-    addCourseToCoursePlan(
-        Weekday.tuesday, TimeSlot.midday, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.tuesday, TimeSlot.earlyAfternoon, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.tuesday, TimeSlot.lateAfternoon, Course.courseForWeekdays());
-
-    addCourseToCoursePlan(
-        Weekday.wednesday, TimeSlot.midday, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.wednesday, TimeSlot.earlyAfternoon, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.wednesday, TimeSlot.lateAfternoon, Course.courseForWeekdays());
-
-    addCourseToCoursePlan(
-        Weekday.thursday, TimeSlot.midday, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.thursday, TimeSlot.earlyAfternoon, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.thursday, TimeSlot.lateAfternoon, Course.courseForWeekdays());
-
-    addCourseToCoursePlan(
-        Weekday.friday, TimeSlot.midday, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.friday, TimeSlot.earlyAfternoon, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.friday, TimeSlot.lateAfternoon, Course.courseForWeekdays());
-
-    addCourseToCoursePlan(
-        Weekday.saturday, TimeSlot.midday, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.saturday, TimeSlot.earlyAfternoon, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.saturday, TimeSlot.lateAfternoon, Course.courseForWeekdays());
-
-    addCourseToCoursePlan(
-        Weekday.sunday, TimeSlot.midday, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.sunday, TimeSlot.earlyAfternoon, Course.courseForWeekdays());
-    addCourseToCoursePlan(
-        Weekday.sunday, TimeSlot.lateAfternoon, Course.courseForWeekdays());
-
+        Course('Zumba', 'Frau Hampeline', 45, [Goal.fun, Goal.stamina]));
     addCourseToCoursePlan(Weekday.thursday, TimeSlot.lateAfternoon,
-        Course('Yoga', 'Frau Penislutscher', 45, [Goal.relax, Goal.stretch]));
+        Course('Yoga', 'Frau Müller', 45, [Goal.relax, Goal.stretch]));
   }
 
   void addCourseToCoursePlan(

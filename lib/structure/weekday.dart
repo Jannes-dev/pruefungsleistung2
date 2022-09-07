@@ -15,10 +15,6 @@ extension WeekdayExtension on Weekday {
         return "thursday";
       case Weekday.friday:
         return "friday";
-      case Weekday.saturday:
-        return "saturday";
-      case Weekday.sunday:
-        return "sunday";
       default:
         return "";
     }

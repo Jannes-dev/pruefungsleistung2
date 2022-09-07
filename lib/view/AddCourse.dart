@@ -38,7 +38,7 @@ class _AddCourse extends State<AddCourse>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Kurs hinzufügen'),
+        title: const Text('Add course'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -110,8 +110,8 @@ class _AddCourse extends State<AddCourse>{
                 }
               )
             ),
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                   left: 15.0,
                   right: 15.0,
                   top: 15.0,
