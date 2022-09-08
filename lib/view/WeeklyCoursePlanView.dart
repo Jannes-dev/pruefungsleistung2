@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pruefungsleistung/structure/coursePlan.dart';
 import 'package:pruefungsleistung/structure/TimeSlot.dart';
 import 'package:pruefungsleistung/structure/weekday.dart';
@@ -7,20 +8,21 @@ import '../structure/goal.dart';
 
 class WeeklyCoursePlanView extends StatefulWidget {
   late CoursePlan _coursePlan;
+
   WeeklyCoursePlanView(CoursePlan coursePlan, {super.key}) {
     _coursePlan = coursePlan;
   }
+
   @override
-  State<WeeklyCoursePlanView> createState() => _WeeklyCoursePlanView(_coursePlan);
-
-
+  State<WeeklyCoursePlanView> createState() =>
+      _WeeklyCoursePlanView(_coursePlan);
 }
 
-class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView>{
+class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
   late CoursePlan _coursePlan;
   var role = "admin";
 
-  _WeeklyCoursePlanView(CoursePlan coursePlan){
+  _WeeklyCoursePlanView(CoursePlan coursePlan) {
     _coursePlan = coursePlan;
   }
 
@@ -29,7 +31,8 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Week ${_coursePlan.getWeekNumber()}', style: TextStyle(fontSize: 26)),
+        title: Text('Week'.tr + ' ' + _coursePlan.getWeekNumber().toString(),
+            style: TextStyle(fontSize: 26)),
       ),
       body: ListView(
         padding: EdgeInsets.zero,
@@ -116,31 +119,39 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView>{
                                                               .getName()),
                                                           content: Row(
                                                               mainAxisAlignment:
-                                                                  MainAxisAlignment.spaceBetween,
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
                                                               children: <
                                                                   Widget>[
                                                                 Column(
                                                                   mainAxisSize:
                                                                       MainAxisSize
                                                                           .min,
-                                                                  crossAxisAlignment: CrossAxisAlignment
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
                                                                           .start,
                                                                   children: <
                                                                       Widget>[
-                                                                    Row(
-                                                                        children: const <
+                                                                    Row(children: <
                                                                         Widget>[
-                                                                      Text('Instructor: ', textAlign: TextAlign.start),
+                                                                      Text(
+                                                                          'Instructor:'.tr + ' ',
+                                                                          textAlign:
+                                                                              TextAlign.start),
                                                                     ]),
-                                                                    Row(
-                                                                        children: const <
+                                                                    Row(children:  <
                                                                         Widget>[
-                                                                      Text('Duration: ', textAlign: TextAlign.start),
+                                                                      Text(
+                                                                          'Duration:'.tr + ' ',
+                                                                          textAlign:
+                                                                              TextAlign.start),
                                                                     ]),
-                                                                    Row(
-                                                                        children: <
+                                                                    Row(children: <
                                                                         Widget>[
-                                                                      const Text('Goals: ', textAlign: TextAlign.start),
+                                                                       Text(
+                                                                          'Goals:'.tr + ' ',
+                                                                          textAlign:
+                                                                              TextAlign.start),
                                                                     ]),
                                                                   ],
                                                                 ),
@@ -148,8 +159,9 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView>{
                                                                     mainAxisSize:
                                                                         MainAxisSize
                                                                             .min,
-                                                                    crossAxisAlignment: CrossAxisAlignment
-                                                                        .start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
                                                                     children: <
                                                                         Widget>[
                                                                       Row(
@@ -162,7 +174,7 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView>{
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.end,
                                                                           children: <Widget>[
-                                                                            Text('${_coursePlan.getCoursePlan()[weekDay][timeSlot].getDuration()} minutes')
+                                                                            Text(_coursePlan.getCoursePlan()[weekDay][timeSlot].getDuration().toString() + ' ' + 'minutes'.tr)
                                                                           ]),
                                                                       Row(
                                                                           mainAxisAlignment: MainAxisAlignment
@@ -185,13 +197,17 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView>{
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       context),
-                                                              child: const Text(
-                                                                  'close', textScaleFactor: 1.3,),
+                                                              child:  Text(
+                                                                'close'.tr,
+                                                                textScaleFactor:
+                                                                    1.3,
+                                                              ),
                                                             ),
                                                           ],
                                                         ));
                                           },
-                                          child: Text('Details', textScaleFactor: 1.15)),
+                                          child: Text('Details',
+                                              textScaleFactor: 1.15)),
                                     )
                                   ]),
                               ],

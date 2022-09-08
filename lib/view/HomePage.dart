@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
 
 import '../structure/coursePlan.dart';
@@ -25,7 +26,7 @@ class _HomePage extends State<HomePage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(
-            'Weekly schedule',
+            'Weekly schedule'.tr,
             style: TextStyle(fontSize: 26),
           ),
           actions: <Widget>[
@@ -110,7 +111,7 @@ class _HomePage extends State<HomePage> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                               Text(
-                                'Week ' + coursePlan.getWeekNumber().toString(),
+                                'Week'.tr + ' ' + coursePlan.getWeekNumber().toString(),
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   color: Colors.white,
@@ -123,11 +124,11 @@ class _HomePage extends State<HomePage> {
                                       showDialog<String>(
                                           context: context,
                                           builder: (BuildContext context) => AlertDialog(
-                                            title: Text('Delete week ' + coursePlan.getWeekNumber().toString() + '?'),
+                                            title: Text('Delete week'.tr + ' ' + coursePlan.getWeekNumber().toString() + '?'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(context),
-                                                child: const Text ('cancel', style: TextStyle(fontWeight: FontWeight.bold)),
+                                                child: Text ('cancel'.tr , style: TextStyle(fontWeight: FontWeight.bold)),
                                               ),
                                               TextButton(
                                                 onPressed: () {
@@ -135,7 +136,7 @@ class _HomePage extends State<HomePage> {
                                                   Navigator.pop(context);
                                                   setState(() {});
                                                 },
-                                                child: const Text ('submit'),
+                                                child: Text ('submit'.tr),
                                               ),
                                             ],
                                           )
