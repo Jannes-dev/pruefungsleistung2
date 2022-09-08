@@ -150,8 +150,7 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView>{
                                                                             .min,
                                                                     crossAxisAlignment: CrossAxisAlignment
                                                                         .start,
-                                                                    children: <
-                                                                        Widget>[
+                                                                    children: <Widget>[
                                                                       Row(
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.end,
@@ -167,8 +166,7 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView>{
                                                                       Row(
                                                                           mainAxisAlignment: MainAxisAlignment
                                                                               .end,
-                                                                          children: <
-                                                                              Widget>[
+                                                                          children: <Widget>[
                                                                             for (Goal goal
                                                                                 in _coursePlan.getCoursePlan()[weekDay][timeSlot].getGoals())
                                                                               Row(children: <Widget>[
