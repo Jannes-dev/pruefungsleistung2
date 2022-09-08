@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pruefungsleistung/structure/coursePlan.dart';
+import 'package:pruefungsleistung/structure/CoursePlan.dart';
 import 'package:pruefungsleistung/structure/TimeSlot.dart';
 import 'package:pruefungsleistung/structure/weekday.dart';
 

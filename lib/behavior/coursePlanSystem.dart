@@ -1,5 +1,5 @@
-import 'package:pruefungsleistung/structure/course.dart';
-import 'package:pruefungsleistung/structure/coursePlan.dart';
+import 'package:pruefungsleistung/structure/Course.dart';
+import 'package:pruefungsleistung/structure/CoursePlan.dart';
 import 'package:pruefungsleistung/structure/goal.dart';
 
 class CoursePlanSystem{
@@ -35,7 +35,16 @@ class CoursePlanSystem{
   }
 
   void deleteCoursePlan(int weekNumber){ //TODO WeekNumber löschen und Map neu sortieren
+    Map<int, CoursePlan> newMap = {};
+    int newWeekNumberCounter = 1;
     _weekPlan.remove(weekNumber);
+    for(CoursePlan coursePlan in _weekPlan.values){
+      coursePlan.setWeekNumber(newWeekNumberCounter);
+      newMap[newWeekNumberCounter] = coursePlan;
+      newWeekNumberCounter++;
+    }
+    _weekPlan = newMap;
+    _weekNumberCounter = newWeekNumberCounter;
   }
   void deleteCourse(int id){
     _courses.remove(id);

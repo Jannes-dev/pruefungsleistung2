@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
 
-import '../structure/coursePlan.dart';
+import '../structure/CoursePlan.dart';
 import 'AddCoursePlan.dart';
 import 'AddCourse.dart';
 import 'DeleteCourse.dart';
 import 'WeeklyCoursePlanView.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  var _role = "";
+  HomePage(String? role, {super.key}){
+   _role = role!;
+  }
 
   @override
-  State<HomePage> createState() => _HomePage();
+  State<HomePage> createState() => _HomePage(_role);
 }
 
+
 class _HomePage extends State<HomePage> {
-  var role = "admin";
+
+  var _role = "";
+
+  _HomePage(String? role){
+    _role = role!;
+  }
   CoursePlanSystem _coursePlanSystem =
       CoursePlanSystem.createCoursePlanSystem();
 
@@ -29,7 +38,7 @@ class _HomePage extends State<HomePage> {
             style: TextStyle(fontSize: 26),
           ),
           actions: <Widget>[
-            if (role == 'admin')
+            if (_role == 'admin')
               IconButton(
                   onPressed: () {
                     setState(() {});
@@ -66,7 +75,7 @@ class _HomePage extends State<HomePage> {
                 title: const Text('add Course'),
                 onTap: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => AddCourse()));
+                      context, MaterialPageRoute(builder: (_) => AddCourse(_role)));
                 },
               ),
               ListTile(
@@ -117,7 +126,7 @@ class _HomePage extends State<HomePage> {
                                   fontSize: 26,
                                 ),
                               ),
-                              if (role == 'admin')
+                              if (_role == 'admin')
                                 IconButton(
                                     onPressed: () {
                                       showDialog<String>(
@@ -132,8 +141,8 @@ class _HomePage extends State<HomePage> {
                                               TextButton(
                                                 onPressed: () {
                                                   _coursePlanSystem.deleteCoursePlan(coursePlan.getWeekNumber());
-                                                  Navigator.pop(context);
                                                   setState(() {});
+                                                  Navigator.pop(context);
                                                 },
                                                 child: const Text ('submit'),
                                               ),
