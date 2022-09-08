@@ -7,22 +7,25 @@ import '../structure/goal.dart';
 
 class WeeklyCoursePlanView extends StatefulWidget {
   late CoursePlan _coursePlan;
+  String _role = '';
 
-  WeeklyCoursePlanView(CoursePlan coursePlan, {super.key}) {
+  WeeklyCoursePlanView(String role, CoursePlan coursePlan, {super.key}) {
+    _role = role;
     _coursePlan = coursePlan;
   }
 
   @override
   State<WeeklyCoursePlanView> createState() =>
-      _WeeklyCoursePlanView(_coursePlan);
+      _WeeklyCoursePlanView(_role, _coursePlan);
 }
 
 class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
   late CoursePlan _coursePlan;
   var _role = "";
 
-  _WeeklyCoursePlanView(CoursePlan coursePlan) {
+  _WeeklyCoursePlanView(String role, CoursePlan coursePlan) {
     _coursePlan = coursePlan;
+    _role = role;
   }
 
   @override
@@ -62,7 +65,7 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(children: <Widget>[
-                                  Text('${timeSlot.value} ' ?? "",
+                                  Text('${timeSlot.value} ',
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold)),
                                 ]),
@@ -123,31 +126,63 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                         .getName() !=
                                     '')
                                   Row(children: <Widget>[
-                                    Column(children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          left: 15.0,
-                                          right: 15.0,
-                                        ),
-                                        child: TextButton(
-                                            onPressed: () {
-                                              showDialog<String>(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          AlertDialog(
-                                                            title: Text(_coursePlan
-                                                                .getCoursePlan()[
-                                                                    weekDay]
-                                                                    [timeSlot]
-                                                                .getName()),
-                                                            content: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: <
-                                                                    Widget>[
-                                                                  Column(
+                                  Column(children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 15.0,
+                                        right: 15.0,
+                                      ),
+                                      child: TextButton(
+                                          onPressed: () {
+                                            showDialog<String>(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        AlertDialog(
+                                                          title: Text(_coursePlan
+                                                              .getCoursePlan()[
+                                                                  weekDay]
+                                                                  [timeSlot]
+                                                              .getName()),
+                                                          content: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: <
+                                                                  Widget>[
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Row(children: const <
+                                                                        Widget>[
+                                                                      Text(
+                                                                          'Instructor: ',
+                                                                          textAlign:
+                                                                              TextAlign.start),
+                                                                    ]),
+                                                                    Row(children: const <
+                                                                        Widget>[
+                                                                      Text(
+                                                                          'Duration: ',
+                                                                          textAlign:
+                                                                              TextAlign.start),
+                                                                    ]),
+                                                                    Row(children: <
+                                                                        Widget>[
+                                                                      const Text(
+                                                                          'Goals: ',
+                                                                          textAlign:
+                                                                              TextAlign.start),
+                                                                    ]),
+                                                                  ],
+                                                                ),
+                                                                Column(
                                                                     mainAxisSize:
                                                                         MainAxisSize
                                                                             .min,
@@ -156,83 +191,52 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                                                             .start,
                                                                     children: <
                                                                         Widget>[
-                                                                      Row(children: const <
-                                                                          Widget>[
-                                                                        Text(
-                                                                            'Instructor: ',
-                                                                            textAlign:
-                                                                                TextAlign.start),
-                                                                      ]),
-                                                                      Row(children: const <
-                                                                          Widget>[
-                                                                        Text(
-                                                                            'Duration: ',
-                                                                            textAlign:
-                                                                                TextAlign.start),
-                                                                      ]),
-                                                                      Row(children: <
-                                                                          Widget>[
-                                                                        const Text(
-                                                                            'Goals: ',
-                                                                            textAlign:
-                                                                                TextAlign.start),
-                                                                      ]),
-                                                                    ],
-                                                                  ),
-                                                                  Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .min,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: <
-                                                                          Widget>[
-                                                                        Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.end,
-                                                                            children: <Widget>[
-                                                                              Text(_coursePlan.getCoursePlan()[weekDay][timeSlot].getTrainer())
-                                                                            ]),
-                                                                        Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.end,
-                                                                            children: <Widget>[
-                                                                              Text('${_coursePlan.getCoursePlan()[weekDay][timeSlot].getDuration()} minutes')
-                                                                            ]),
-                                                                        Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.end,
-                                                                            children: <Widget>[
-                                                                              for (Goal goal in _coursePlan.getCoursePlan()[weekDay][timeSlot].getGoals())
-                                                                                Row(children: <Widget>[
-                                                                                  Text(
-                                                                                    '${goal.value} ',
-                                                                                    textAlign: TextAlign.left,
-                                                                                  )
-                                                                                ]),
-                                                                            ]),
-                                                                      ]),
-                                                                ]),
-                                                            actions: [
-                                                              ElevatedButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        context),
-                                                                child:
-                                                                    const Text(
-                                                                  'close',
-                                                                  textScaleFactor:
-                                                                      1.3,
-                                                                ),
+                                                                      Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.end,
+                                                                          children: <Widget>[
+                                                                            Text(_coursePlan.getCoursePlan()[weekDay][timeSlot].getTrainer())
+                                                                          ]),
+                                                                      Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.end,
+                                                                          children: <Widget>[
+                                                                            Text('${_coursePlan.getCoursePlan()[weekDay][timeSlot].getDuration()} minutes')
+                                                                          ]),
+                                                                      Row(
+                                                                          mainAxisAlignment: MainAxisAlignment
+                                                                              .end,
+                                                                          children: <
+                                                                              Widget>[
+                                                                            for (Goal goal
+                                                                                in _coursePlan.getCoursePlan()[weekDay][timeSlot].getGoals())
+                                                                              Row(children: <Widget>[
+                                                                                Text(
+                                                                                  '${goal.value} ',
+                                                                                  textAlign: TextAlign.left,
+                                                                                )
+                                                                              ]),
+                                                                          ]),
+                                                                    ]),
+                                                              ]),
+                                                          actions: [
+                                                            ElevatedButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      context),
+                                                              child: const Text(
+                                                                'close',
+                                                                textScaleFactor:
+                                                                    1.3,
                                                               ),
-                                                            ],
-                                                          ));
-                                            },
-                                            child: Text('Details',
-                                                textScaleFactor: 1.15)),
-                                      )
-                                    ]),
+                                                            ),
+                                                          ],
+                                                        ));
+                                          },
+                                          child: Text('Details',
+                                              textScaleFactor: 1.15)),
+                                    )
+                                  ]),
                                     if (_role == 'admin')
                                       Column(
                                         children: <Widget>[
