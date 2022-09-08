@@ -1,10 +1,11 @@
-import 'course.dart';
+import 'Course.dart';
 import 'goal.dart';
 import 'weekday.dart';
 import 'TimeSlot.dart';
 
 class CoursePlan {
   late int _weekNumber;
+
   Map<Weekday, Map<TimeSlot, Course>> _coursePlan = {
     Weekday.monday: {
       TimeSlot.midday: Course.courseForWeekdays(),
@@ -43,8 +44,11 @@ class CoursePlan {
         Course('Yoga', 'Frau Müller', 45, [Goal.relax, Goal.stretch]));
   }
 
-  void addCourseToCoursePlan(
-      Weekday weekday, TimeSlot timeSlot, Course course) {
+  void setWeekNumber(int value) {
+    _weekNumber = value;
+  }
+
+  void addCourseToCoursePlan(Weekday weekday, TimeSlot timeSlot, Course course) {
     Map<TimeSlot, Course>? newCourse = {};
     if (_coursePlan.containsKey(weekday)) {
       newCourse = _coursePlan[weekday];

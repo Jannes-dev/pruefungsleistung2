@@ -6,13 +6,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class AddCourse extends StatefulWidget {
-  const AddCourse({super.key});
+  var _role = "";
+  AddCourse(String? role, {super.key}){
+    _role = role!;
+  }
 
   @override
-  State<AddCourse> createState() => _AddCourse();
+  State<AddCourse> createState() => _AddCourse(_role);
 }
 
 class _AddCourse extends State<AddCourse> {
+
+  var _role = "";
 
   final formKey = GlobalKey<FormState>();
 
@@ -25,7 +30,8 @@ class _AddCourse extends State<AddCourse> {
   List<Goal> _selectedGoals = [];
   Map<Goal, bool> _checkedGoals = {};
 
-  _AddCourse() {
+  _AddCourse(String? role) {
+    _role = role!;
     Goal.values.forEach((goal) {
       _allGoals.add(goal);
       _checkedGoals[goal] = false;
@@ -151,14 +157,14 @@ class _AddCourse extends State<AddCourse> {
                               onPressed: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (_) => AddCourse())),
+                                      builder: (_) => AddCourse(_role))),
                               child: const Text('add another course'),
                             ),
                             TextButton(
                               onPressed: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (_) => HomePage())),
+                                      builder: (_) => HomePage(_role))),
                               child: const Text('return to week plan'),
                             ),
                           ],

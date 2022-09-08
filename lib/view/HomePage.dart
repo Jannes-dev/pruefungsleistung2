@@ -2,21 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
 
-import '../structure/coursePlan.dart';
+import '../structure/CoursePlan.dart';
 import 'AddCoursePlan.dart';
 import 'AddCourse.dart';
 import 'DeleteCourse.dart';
 import 'WeeklyCoursePlanView.dart';
 
+enum Menu { addWeekPlan, addCourse}
+
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  var _role = "";
+  HomePage(String? role, {super.key}){
+   _role = role!;
+  }
 
   @override
-  State<HomePage> createState() => _HomePage();
+  State<HomePage> createState() => _HomePage(_role);
 }
 
+
 class _HomePage extends State<HomePage> {
-  var role = "admin";
+
+  var _role = "";
+
+  _HomePage(String? role){
+    _role = role!;
+  }
   CoursePlanSystem _coursePlanSystem =
       CoursePlanSystem.createCoursePlanSystem();
 
@@ -29,21 +40,46 @@ class _HomePage extends State<HomePage> {
             'Weekly schedule'.tr,
             style: TextStyle(fontSize: 26),
           ),
+
           actions: <Widget>[
-            if (role == 'admin')
-              IconButton(
-                  onPressed: () {
-                    setState(() {});
-                    _coursePlanSystem.addCoursePlan();
-                    CoursePlan coursePlan = _coursePlanSystem.getWeekPlan()[
-                        (_coursePlanSystem.getWeekNumberCounter()) - 1];
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => WeeklyCoursePlanView(coursePlan)));
+            if (_role == 'admin')
+              PopupMenuButton<Menu>(
+                  onSelected: (Menu item) {
+                    if(item == Menu.addWeekPlan){
+                      _coursePlanSystem.addCoursePlan();
+                      CoursePlan coursePlan = _coursePlanSystem.getWeekPlan()[
+                      (_coursePlanSystem.getWeekNumberCounter()) - 1];
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                      builder: (_) => WeeklyCoursePlanView(_role, coursePlan))
+                      );
+                      setState(() {
+                      });
+                      };
+                    if(item == Menu.addCourse){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => AddCourse(_role))
+                      );
+                    }
                   },
-                  icon: Icon(Icons.add))
-          ],
+                  itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
+                    PopupMenuItem<Menu>(
+                      value: Menu.addWeekPlan,
+                      child: Text('Add wekkplan'),
+                    ),
+                    PopupMenuItem<Menu>(
+                      value: Menu.addCourse,
+                      child: Text('Add course'),
+                      onTap: (){
+
+                    },
+                  ),
+                ]
+                ),
+                ],
         ),
         drawer: Drawer(
           //TODO If und else für Admin rolle hinzufügen
@@ -67,7 +103,7 @@ class _HomePage extends State<HomePage> {
                 title: const Text('add Course'),
                 onTap: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => AddCourse()));
+                      context, MaterialPageRoute(builder: (_) => AddCourse(_role)));
                 },
               ),
               ListTile(
@@ -96,7 +132,7 @@ class _HomePage extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) =>
-                                    WeeklyCoursePlanView(coursePlan)));
+                                    WeeklyCoursePlanView(_role, coursePlan)));
                       },
                       child: SizedBox(
                           width: 200,
@@ -118,7 +154,7 @@ class _HomePage extends State<HomePage> {
                                   fontSize: 26,
                                 ),
                               ),
-                              if (role == 'admin')
+                              if (_role == 'admin')
                                 IconButton(
                                     onPressed: () {
                                       showDialog<String>(
@@ -133,8 +169,8 @@ class _HomePage extends State<HomePage> {
                                               TextButton(
                                                 onPressed: () {
                                                   _coursePlanSystem.deleteCoursePlan(coursePlan.getWeekNumber());
-                                                  Navigator.pop(context);
                                                   setState(() {});
+                                                  Navigator.pop(context);
                                                 },
                                                 child: Text ('submit'.tr),
                                               ),
