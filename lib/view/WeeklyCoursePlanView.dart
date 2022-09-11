@@ -3,6 +3,7 @@ import 'package:pruefungsleistung/structure/CoursePlan.dart';
 import 'package:pruefungsleistung/structure/TimeSlot.dart';
 import 'package:pruefungsleistung/structure/weekday.dart';
 
+import '../structure/Course.dart';
 import '../structure/goal.dart';
 
 class WeeklyCoursePlanView extends StatefulWidget {
@@ -245,7 +246,47 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                               Icons.delete,
                                               color: Colors.red,
                                             ),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              showDialog<String>(
+                                                  context: context,
+                                                  builder: (BuildContext
+                                                  context) =>
+                                                      AlertDialog(
+                                                        title: Text('Delete course ' +
+                                                            _coursePlan
+                                                                .getCoursePlan()[
+                                                            weekDay]
+                                                            [timeSlot]
+                                                                .getName() +
+                                                            '?'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    context),
+                                                            child: const Text(
+                                                                'cancel',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold)),
+                                                          ),
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              _coursePlan.getCoursePlan()[weekDay][timeSlot] =
+                                                                  Course
+                                                                      .courseForWeekdays();
+                                                              setState(() {});
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            child: const Text(
+                                                                'submit'),
+                                                          ),
+                                                        ],
+                                                      ));
+
+                                            },
                                           ),
                                         ],
                                       )
