@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pruefungsleistung/structure/CoursePlan.dart';
 import 'package:pruefungsleistung/structure/TimeSlot.dart';
 import 'package:pruefungsleistung/structure/weekday.dart';
@@ -34,7 +35,7 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Week ${_coursePlan.getWeekNumber()}',
+        title: Text('Week'.tr + ' ${_coursePlan.getWeekNumber()}',
             style: TextStyle(fontSize: 26)),
       ),
       body: ListView(
@@ -85,7 +86,7 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                               ElevatedButton.icon(
                                                   onPressed: () {},
                                                   icon: Icon(Icons.add),
-                                                  label: Text('add')),
+                                                  label: Text('add'.tr)),
                                             ],
                                           ),
                                       if (_coursePlan
@@ -160,24 +161,24 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                                                           .start,
                                                                   children: <
                                                                       Widget>[
-                                                                    Row(children: const <
+                                                                    Row(children: <
                                                                         Widget>[
                                                                       Text(
-                                                                          'Instructor: ',
-                                                                          textAlign:
-                                                                              TextAlign.start),
-                                                                    ]),
-                                                                    Row(children: const <
-                                                                        Widget>[
-                                                                      Text(
-                                                                          'Duration: ',
+                                                                          '${'Instructor'.tr}: ',
                                                                           textAlign:
                                                                               TextAlign.start),
                                                                     ]),
                                                                     Row(children: <
                                                                         Widget>[
-                                                                      const Text(
-                                                                          'Goals: ',
+                                                                      Text(
+                                                                          '${'Duration'.tr}: ',
+                                                                          textAlign:
+                                                                              TextAlign.start),
+                                                                    ]),
+                                                                    Row(children: <
+                                                                        Widget>[
+                                                                          Text(
+                                                                          '${'Goals'.tr}: ',
                                                                           textAlign:
                                                                               TextAlign.start),
                                                                     ]),
@@ -202,7 +203,7 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.end,
                                                                           children: <Widget>[
-                                                                            Text('${_coursePlan.getCoursePlan()[weekDay][timeSlot].getDuration()} minutes')
+                                                                            Text('${_coursePlan.getCoursePlan()[weekDay][timeSlot].getDuration()} ${'minutes'.tr}')
                                                                           ]),
                                                                       Row(
                                                                           mainAxisAlignment: MainAxisAlignment
@@ -225,8 +226,8 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       context),
-                                                              child: const Text(
-                                                                'close',
+                                                              child: Text(
+                                                                'close'.tr,
                                                                 textScaleFactor:
                                                                     1.3,
                                                               ),
@@ -252,20 +253,19 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                                   builder: (BuildContext
                                                   context) =>
                                                       AlertDialog(
-                                                        title: Text('Delete course ' +
+                                                        title: Text('${'${'Delete course'.tr} ' +
                                                             _coursePlan
                                                                 .getCoursePlan()[
                                                             weekDay]
                                                             [timeSlot]
-                                                                .getName() +
-                                                            '?'),
+                                                                .getName()}?'),
                                                         actions: [
                                                           TextButton(
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     context),
-                                                            child: const Text(
-                                                                'cancel',
+                                                            child: Text(
+                                                                'cancel'.tr,
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                     FontWeight
@@ -280,8 +280,8 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                                               Navigator.pop(
                                                                   context);
                                                             },
-                                                            child: const Text(
-                                                                'submit'),
+                                                            child: Text(
+                                                                'submit'.tr),
                                                           ),
                                                         ],
                                                       ));

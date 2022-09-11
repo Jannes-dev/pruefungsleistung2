@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
-
+import 'package:get/get.dart';
 import '../structure/CoursePlan.dart';
-import 'AddCoursePlan.dart';
 import 'AddCourse.dart';
-import 'DeleteCourse.dart';
 import 'WeeklyCoursePlanView.dart';
 
 enum Menu { addWeekPlan, addCourse}
@@ -36,7 +34,7 @@ class _HomePage extends State<HomePage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(
-            'Weekly schedule',
+            'Weekly schedule'.tr,
             style: TextStyle(fontSize: 26),
           ),
 
@@ -67,11 +65,11 @@ class _HomePage extends State<HomePage> {
                   itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
                     PopupMenuItem<Menu>(
                       value: Menu.addWeekPlan,
-                      child: Text('Add wekkplan'),
+                      child: Text('Add wekkplan'.tr),
                     ),
                     PopupMenuItem<Menu>(
                       value: Menu.addCourse,
-                      child: Text('Add course'),
+                      child: Text('Add course'.tr),
                       onTap: (){
 
                     },
@@ -79,41 +77,6 @@ class _HomePage extends State<HomePage> {
                 ]
                 ),
                 ],
-        ),
-        drawer: Drawer(
-          //TODO If und else für Admin rolle hinzufügen
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                child: Text('Penis'),
-                decoration: BoxDecoration(
-                  color: Colors.lightBlueAccent,
-                ),
-              ),
-              ListTile(
-                title: const Text('add CoursePlan'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => AddCoursePlan()));
-                },
-              ),
-              ListTile(
-                title: const Text('add Course'),
-                onTap: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => AddCourse(_role)));
-                },
-              ),
-              ListTile(
-                title: const Text('delete Course'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => DeleteCourse()));
-                },
-              ),
-            ],
-          ),
         ),
         body: ListView(
           padding: EdgeInsets.zero,
@@ -146,7 +109,7 @@ class _HomePage extends State<HomePage> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                               Text(
-                                'Week ' + coursePlan.getWeekNumber().toString(),
+                                '${'Week'.tr} ${coursePlan.getWeekNumber()}',
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   color: Colors.white,
@@ -159,11 +122,11 @@ class _HomePage extends State<HomePage> {
                                       showDialog<String>(
                                           context: context,
                                           builder: (BuildContext context) => AlertDialog(
-                                            title: Text('Delete week ' + coursePlan.getWeekNumber().toString() + '?'),
+                                            title: Text('${'Delete week'.tr} ${coursePlan.getWeekNumber()}?'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(context),
-                                                child: const Text ('cancel', style: TextStyle(fontWeight: FontWeight.bold)),
+                                                child: Text ('cancel'.tr, style: TextStyle(fontWeight: FontWeight.bold)),
                                               ),
                                               TextButton(
                                                 onPressed: () {
@@ -171,7 +134,7 @@ class _HomePage extends State<HomePage> {
                                                   setState(() {});
                                                   Navigator.pop(context);
                                                 },
-                                                child: const Text ('submit'),
+                                                child: Text ('submit'.tr),
                                               ),
                                             ],
                                           )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
 import '../structure/Account.dart';
 import 'HomePage.dart';
 
@@ -29,7 +30,7 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "Login Page",
+          "Login Page".tr,
           style: TextStyle(fontSize: 26),
         ),
       ),
@@ -47,14 +48,14 @@ class _LoginState extends State<Login> {
                   enableSuggestions: false,
                   validator: (value) {
                     if (value!.isEmpty || !value.contains('@')) {
-                      return 'Please enter Valid email address!';
+                      return 'Please enter Valid email address!'.tr;
                     }
                     return null;
                   },
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email',
-                      hintText: 'Enter valid email id as abs@email.com'),
+                      hintText: 'Enter valid email id as abs@email.com'.tr),
                   onSaved: (value) {
                     _userEmail = value!;
                   },
@@ -67,14 +68,14 @@ class _LoginState extends State<Login> {
                   key: ValueKey('password'),
                   validator: (String? value) {
                     return (value != null && value.contains('@'))
-                        ? 'Do not use the @ char.'
+                        ? 'Do not use the @ char.'.tr
                         : null;
                   },
                   obscureText: true,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter secure password',
+                    labelText: 'Password'.tr,
+                    hintText: 'Enter secure password'.tr,
                   ),
                   onSaved: (value) {
                     _userPassword = value!;
@@ -87,7 +88,7 @@ class _LoginState extends State<Login> {
                   padding: EdgeInsets.only(
                       left: 15.0, right: 15.0, top: 15.0, bottom: 15),
                   child: Text(
-                    'Wrong username or password',
+                    'Wrong username or password'.tr,
                     style: TextStyle(color: Colors.red),
                   ),
                 ),
@@ -115,15 +116,50 @@ class _LoginState extends State<Login> {
                     }
                   },
                   child: Text(
-                    'Login',
+                    'Login'.tr,
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
               ),
+             Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(18.0)))),
+                          onPressed: () {
+                            var locale = Locale('en', 'US');
+                            Get.updateLocale(locale);
+                          },
+                          child: Text('English'.tr)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(18.0)))),
+                          onPressed: () {
+                            var locale = Locale('de', 'DE');
+                            Get.updateLocale(locale);
+                          },
+                          child: Text('German'.tr)),
+                    ),
+                  ]),
               SizedBox(
                 height: 130,
               ),
-              Text('New User? Create account'),
+              Text('New User? Create account'.tr),
             ],
           ),
         ),
