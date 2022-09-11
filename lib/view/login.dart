@@ -48,14 +48,14 @@ class _LoginState extends State<Login> {
                   enableSuggestions: false,
                   validator: (value) {
                     if (value!.isEmpty || !value.contains('@')) {
-                      return 'Please enter Valid email address!'.tr;
+                      return 'Please enter valid email address!'.tr;
                     }
                     return null;
                   },
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email',
-                      hintText: 'Enter valid email id as abs@email.com'.tr),
+                      hintText: 'Enter valid emailadress'.tr),
                   onSaved: (value) {
                     _userEmail = value!;
                   },
@@ -75,7 +75,7 @@ class _LoginState extends State<Login> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password'.tr,
-                    hintText: 'Enter secure password'.tr,
+                    hintText: 'Enter password'.tr,
                   ),
                   onSaved: (value) {
                     _userPassword = value!;

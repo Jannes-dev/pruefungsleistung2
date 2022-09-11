@@ -65,7 +65,7 @@ class _HomePage extends State<HomePage> {
                   itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
                     PopupMenuItem<Menu>(
                       value: Menu.addWeekPlan,
-                      child: Text('Add wekkplan'.tr),
+                      child: Text('Add weekplan'.tr),
                     ),
                     PopupMenuItem<Menu>(
                       value: Menu.addCourse,

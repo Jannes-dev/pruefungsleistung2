@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:pruefungsleistung/structure/goal.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
 import 'HomePage.dart';
@@ -43,7 +44,7 @@ class _AddCourse extends State<AddCourse> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text('Add course', style: TextStyle(fontSize: 26)),
+          title:  Text('Add course'.tr, style: TextStyle(fontSize: 26)),
         ),
         body: Form(
             key: formKey,
@@ -58,14 +59,14 @@ class _AddCourse extends State<AddCourse> {
                 enableSuggestions: false,
                 validator: (value) {
                   if (value == '')
-                    return 'Please enter a name';
+                    return 'Please enter a name'.tr;
                   else
                     return null;
                 },
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Name',
-                    hintText: 'Enter name for course.'),
+                    hintText: 'Enter name for course'.tr),
                 onChanged: (value) => setState(() {
                   _courseName = value;
                 }),
@@ -78,14 +79,14 @@ class _AddCourse extends State<AddCourse> {
                 key: const ValueKey('instructorName'),
                 validator: (value) {
                   if (value == '')
-                    return 'Please enter an instructor';
+                    return 'Please enter an instructor'.tr;
                   else
                     return null;
                 },
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Instructor',
-                  hintText: 'Enter name of instructor',
+                  labelText: 'Instructor'.tr,
+                  hintText: 'Enter name of instructor'.tr,
                 ),
                 onChanged: (value) =>
                     setState(() => _instructorName = value),
@@ -99,21 +100,21 @@ class _AddCourse extends State<AddCourse> {
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.digitsOnly
                   ],
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Duration (minutes)',
-                    hintText: 'Enter duration of the course',
+                    labelText: 'Duration (minutes)'.tr,
+                    hintText: 'Enter duration of the course'.tr,
                   ),
                   onChanged: (value) {
                     setState(() {});
                     _durationInMinutes = int.tryParse(value)!;
                   }
                 )),
-            const Padding(
+             Padding(
               padding: EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15.0, bottom: 15),
               child: Text(
-                'Select goal:',
+                'Add goal:'.tr,
                 textAlign: TextAlign.left,
                 textScaleFactor: 1.3,
               ),
@@ -138,8 +139,8 @@ class _AddCourse extends State<AddCourse> {
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
-                child: const Text(
-                  'Add course',
+                child:  Text(
+                  'Add course'.tr,
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
                 onPressed: () {
@@ -150,7 +151,7 @@ class _AddCourse extends State<AddCourse> {
                     showDialog<String>(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
-                          title: const Text('Course has been added'),
+                          title:  Text('Course has been added'.tr),
                           content: Text("$_courseName, $_instructorName, $_durationInMinutes minutes"),
                           actions: [
                             TextButton(
@@ -158,14 +159,14 @@ class _AddCourse extends State<AddCourse> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (_) => AddCourse(_role))),
-                              child: const Text('add another course'),
+                              child:  Text('add another course'.tr),
                             ),
                             TextButton(
                               onPressed: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (_) => HomePage(_role))),
-                              child: const Text('return to week plan'),
+                              child:  Text('return to week plan'.tr),
                             ),
                           ],
                         ));
