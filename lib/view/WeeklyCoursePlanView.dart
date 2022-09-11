@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pruefungsleistung/structure/Course.dart';
 import 'package:pruefungsleistung/structure/CoursePlan.dart';
 import 'package:pruefungsleistung/structure/TimeSlot.dart';
 import 'package:pruefungsleistung/structure/weekday.dart';
@@ -241,11 +242,31 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                       Column(
                                         children: <Widget>[
                                           IconButton(
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.delete,
                                               color: Colors.red,
                                             ),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              showDialog<String>(
+                                                  context: context,
+                                                  builder: (BuildContext context) => AlertDialog(
+                                                title: Text('Delete course ' + _coursePlan.getCoursePlan()[weekDay][timeSlot].getName.toString() + '?'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () => Navigator.pop(context),
+                                                    child: const Text ('cancel', style: TextStyle(fontWeight: FontWeight.bold)),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      _coursePlan.getCoursePlan()[weekDay][timeSlot] = Course.courseForWeekdays();
+                                                      setState(() {});
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: const Text ('submit'),
+                                                  ),
+                                                ],
+                                              ));
+                                            },
                                           ),
                                         ],
                                       )
