@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pruefungsleistung/view/AddAccountView.dart';
 import '../structure/Account.dart';
+import '../structure/Accounts.dart';
 import 'HomePage.dart';
 
 class Login extends StatefulWidget {
@@ -14,10 +16,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final formKey = GlobalKey<FormState>();
 
-  Map<String, Account> _credentials = {
-    'admin@test.de': Account('admin@test.de', 'password', 'admin'),
-    'user@test.de': Account('user@test.de', 'password', 'user')
-  };
+
+  Accounts accounts = Accounts.createAccounts();
 
   bool _wrongCredentials = false;
   var _isLogin = true;
@@ -26,6 +26,8 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+
+    final Map<String, Account> credentials = accounts.getCredentials();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -105,10 +107,10 @@ class _LoginState extends State<Login> {
                     if (isValid!) {
                       formKey.currentState?.save();
 
-                      if (_credentials.containsKey(_userEmail) &&
-                          _credentials[_userEmail]?.password == _userPassword) {
+                      if (credentials.containsKey(_userEmail) &&
+                          credentials[_userEmail]?.password == _userPassword) {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => HomePage(_credentials[_userEmail]?.role)));
+                            MaterialPageRoute(builder: (_) => HomePage(credentials[_userEmail]?.role)));
                       } else {
                         _wrongCredentials = true;
                         setState(() {});
@@ -159,7 +161,20 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: 130,
               ),
-              Text('New User? Create account'.tr),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('New User?'.tr),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => AddAccountView()));
+
+                      },
+                      child: Text('Create Account'.tr)
+                  )
+                ],
+              )
             ],
           ),
         ),
@@ -167,3 +182,4 @@ class _LoginState extends State<Login> {
     );
   }
 }
+

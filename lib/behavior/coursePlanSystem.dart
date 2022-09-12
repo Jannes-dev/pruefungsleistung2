@@ -25,9 +25,6 @@ class CoursePlanSystem{
   }
 
   static CoursePlanSystem createCoursePlanSystem(){
-    if(_coursePlanSystem == null){
-      _coursePlanSystem = CoursePlanSystem._CoursePlanSystem();
-    }
     return _coursePlanSystem;
   }
 
