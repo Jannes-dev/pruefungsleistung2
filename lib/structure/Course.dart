@@ -17,7 +17,7 @@ class Course {
     _goals = goals;
   }
   Course.courseForWeekdays(){
-    _id = ++_courseCounter;
+    _id = 0;
     _name = "";
     _instructor = "";
     _durationInMinutes = 0;

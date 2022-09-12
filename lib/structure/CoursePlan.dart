@@ -36,12 +36,6 @@ class CoursePlan {
 
   CoursePlan(int weekNumber) {
     _weekNumber = weekNumber;
-    addCourseToCoursePlan(Weekday.monday, TimeSlot.earlyAfternoon,
-        Course('Yoga', 'Frau Hampeline', 45, [Goal.relax, Goal.stretch]));
-    addCourseToCoursePlan(Weekday.monday, TimeSlot.lateAfternoon,
-        Course('Zumba', 'Frau Hampeline', 45, [Goal.fun, Goal.stamina]));
-    addCourseToCoursePlan(Weekday.thursday, TimeSlot.lateAfternoon,
-        Course('Yoga', 'Frau Müller', 45, [Goal.relax, Goal.stretch]));
   }
 
   void setWeekNumber(int value) {

@@ -1,6 +1,7 @@
 import 'package:pruefungsleistung/structure/Course.dart';
 import 'package:pruefungsleistung/structure/CoursePlan.dart';
 import 'package:pruefungsleistung/structure/goal.dart';
+import 'package:get/get.dart';
 
 class CoursePlanSystem{
 
@@ -11,11 +12,16 @@ class CoursePlanSystem{
   static int _weekNumberCounter = 1;
 
   CoursePlanSystem._CoursePlanSystem() {
-    addCoursePlan();
-    addCoursePlan();
-    addCoursePlan();
-    addCourse('Yoga', 'Bernd', 15, [Goal.stamina, Goal.coreStability]);
-    addCourse('Zumba', 'Bernd', 15, [Goal.stamina, Goal.coreStability]);
+    addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan();
+
+    addCourse('Yoga', 'Maria Mueller', 60, [Goal.stretch, Goal.relax]);
+    addCourse('Pilates', 'Meike Meier', 45, [Goal.strength, Goal.stamina]);
+    addCourse('Zumba', 'Kerstin Schiller', 30, [Goal.stamina, Goal.fun]);
+    addCourse('Core', 'Klaus Kleber', 60, [Goal.coreStability, Goal.strength]);
+    addCourse('Combat', 'Thorsten Legat', 30, [Goal.strength, Goal.stamina]);
+    addCourse('Jumping', 'Bastian Yotta', 45, [Goal.stamina]);
+    addCourse('Balance', 'Arno Duebel', 45, [Goal.coreStability]);
+    addCourse('Bum / abs', 'Heidi Klum', 30, [Goal.strength, Goal.stamina]);
   }
 
   static CoursePlanSystem createCoursePlanSystem(){
