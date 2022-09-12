@@ -21,12 +21,13 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
 
   var _role = "";
+  CoursePlanSystem _coursePlanSystem =
+  CoursePlanSystem.createCoursePlanSystem();
 
   _HomePage(String? role){
     _role = role!;
   }
-  CoursePlanSystem _coursePlanSystem =
-      CoursePlanSystem.createCoursePlanSystem();
+
 
   @override
   Widget build(BuildContext context) {

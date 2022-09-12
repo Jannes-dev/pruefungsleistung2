@@ -14,6 +14,8 @@ class CoursePlanSystem{
     addCoursePlan();
     addCoursePlan();
     addCoursePlan();
+    addCourse('Yoga', 'Bernd', 15, [Goal.stamina, Goal.coreStability]);
+    addCourse('Zumba', 'Bernd', 15, [Goal.stamina, Goal.coreStability]);
   }
 
   static CoursePlanSystem createCoursePlanSystem(){
