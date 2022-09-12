@@ -4,7 +4,7 @@ import 'package:pruefungsleistung/structure/goal.dart';
 import 'package:get/get.dart';
 
 class CoursePlanSystem{
-
+  String test = '';
   static CoursePlanSystem _coursePlanSystem = CoursePlanSystem._CoursePlanSystem();
 
   static Map<int, Course> _courses = {};
