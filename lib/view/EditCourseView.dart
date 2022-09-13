@@ -156,7 +156,7 @@ class _EditCourseView extends State<EditCourseView> {
                             color: Colors.blue, borderRadius: BorderRadius.circular(20)),
                         child: TextButton(
                           child:  Text(
-                            'Save'.tr,
+                            'save'.tr,
                             style: TextStyle(color: Colors.white, fontSize: 25),
                           ),
                           onPressed: () {

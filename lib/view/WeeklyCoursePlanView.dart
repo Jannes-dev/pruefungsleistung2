@@ -326,7 +326,7 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                                               context) =>
                                                           AlertDialog(
                                                             title: Text(
-                                                                '${'${'Delete course'.tr} ' + _coursePlan.getCoursePlan()[weekDay][timeSlot].getName()}?'),
+                                                                '${'${'delete course'.tr} ' + _coursePlan.getCoursePlan()[weekDay][timeSlot].getName()}?'),
                                                             actions: [
                                                               Padding(
                                                                 padding: const EdgeInsets.all(8.0),

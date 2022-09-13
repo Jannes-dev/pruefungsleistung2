@@ -30,7 +30,7 @@ class _AddAcountView extends State<AddAccountView> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "Add Account".tr,
+          "Add account".tr,
           style: TextStyle(fontSize: 26),
         ),
       ),
@@ -54,7 +54,7 @@ class _AddAcountView extends State<AddAccountView> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
-                    hintText: 'Enter valid emailadress'.tr),
+                    hintText: 'Enter a valid email'.tr),
                 onSaved: (value) {
                   _userEmail = value!;
                 },
@@ -136,7 +136,7 @@ class _AddAcountView extends State<AddAccountView> {
                   }
                 },
                 child: Text(
-                  'Add Account'.tr,
+                  'Add account'.tr,
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
               ),

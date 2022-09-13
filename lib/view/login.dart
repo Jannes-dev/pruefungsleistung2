@@ -57,7 +57,7 @@ class _LoginState extends State<Login> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email',
-                      hintText: 'Enter valid emailadress'.tr),
+                      hintText: 'Enter a valid email'.tr),
                   onSaved: (value) {
                     _userEmail = value!;
                   },
@@ -163,13 +163,13 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('New User?'.tr),
+                  Text('New user?'.tr),
                   TextButton(
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (_) => AddAccountView()));
                       },
-                      child: Text('Create Account'.tr)
+                      child: Text('Create account'.tr)
                   )
                 ],
               )

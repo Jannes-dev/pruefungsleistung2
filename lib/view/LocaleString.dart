@@ -9,7 +9,8 @@ class LocalString extends Translations {
       {
         //ENGLISH
         'de_DE': {
-          'New User? Create account': 'Neuer Nutzer? Account erstellen',
+          'New user?' : 'Neuer Nutzer?',
+          'Create account':  'Account erstellen',
           'English' : 'Englisch',
           'German' : 'Deutsch',
           'Week' : 'Woche',
@@ -38,16 +39,31 @@ class LocalString extends Translations {
           'Enter name of instructor' : 'Geben Sie einen Trainernamen ein',
           'Duration (minutes)' : 'Dauer (Minuten)',
           'Enter duration of the course' : 'Geben Sie die Dauer des Kurses ein',
-          'Add goal:' : 'Ziel hinufügen',
+          'Add goal:' : 'Ziel hinzufügen',
           'Add course' : 'Kurs hinzufügen',
           'Course has been added' : 'Kurs wurde hinzugefügt',
           'add another course' : 'einen weiteren Kurs hinzufügen',
           'return to week plan' : 'zurück zum Wochenplan',
           'Please enter valid email address!' : 'Bitte geben Sie eine gültige Emailadresse ein',
-          'Enter valid emailadress' : 'Geben Sie eine Email ein',
+          'Enter a valid email' : 'Geben Sie eine Email ein',
           'Wrong username or password' : 'Falscher Benutzername oder Passwort',
           'Enter password' : 'Geben Sie ihr Passwort ein',
           'Add weekplan' : 'Wochenplan hinzufügen',
+          'Add course' : 'Kurs hinzufügen',
+          'Course overview' : 'Kursübersicht',
+          'add' : 'hinzufügen',
+          'none' : 'keinen',
+          'All courses' : 'Alle Kurse',
+          "Add account" : 'Konto hinzufügen',
+          'Password' : 'Passwort',
+          'Confirmation' : 'Passwort bestätigen',
+          'delete course' : 'Kurs entfernen',
+          'save' : 'Speichern'
+
+
+
+
+
 
 
 
