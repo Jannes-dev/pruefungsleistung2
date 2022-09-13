@@ -74,7 +74,6 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                         for (TimeSlot timeSlot
                             in _coursePlan.getCoursePlan()[weekDay].keys)
                           ListTile(
-                            leading: const Icon(Icons.access_time),
                             minLeadingWidth: 10,
                             title: Transform.translate(
                                 offset: Offset(0, 0),

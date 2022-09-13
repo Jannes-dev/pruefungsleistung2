@@ -22,6 +22,10 @@ class CoursePlanSystem{
     addCourse('Jumping', 'Bastian Yotta', 45, [Goal.stamina]);
     addCourse('Balance', 'Arno Duebel', 45, [Goal.coreStability]);
     addCourse('Bum / abs', 'Heidi Klum', 30, [Goal.strength, Goal.stamina]);
+    addCourse('Judo', 'Thorsten Legat', 60, [Goal.fun, Goal.strength]);
+    addCourse('Self defence', 'Carsten Stahl', 60, [Goal.fun, Goal.relax]);
+
+
   }
 
   static CoursePlanSystem createCoursePlanSystem(){
