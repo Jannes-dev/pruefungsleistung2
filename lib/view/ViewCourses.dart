@@ -89,7 +89,7 @@ class _ViewCourses extends State<ViewCourses>{
                               showDialog<String>(
                                   context: context,
                                   builder: (BuildContext context) => AlertDialog(
-                                    title: Text('${'Delete course'.tr} ${course.getName()}?'),
+                                    title: Text('${'delete course'.tr} ${course.getName()}?'),
                                     actions:[
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),

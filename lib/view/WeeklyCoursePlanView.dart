@@ -112,7 +112,7 @@ class _WeeklyCoursePlanView extends State<WeeklyCoursePlanView> {
                                                                       setState) {
                                                                 return AlertDialog(
                                                                   title: Text(
-                                                                      'Select course'
+                                                                      'select course'
                                                                           .tr),
                                                                   content: DropdownButtonFormField<
                                                                           String>(

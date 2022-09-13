@@ -32,7 +32,7 @@ class _LoginState extends State<Login> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "Login Page".tr,
+          "Login".tr,
           style: TextStyle(fontSize: 26),
         ),
       ),

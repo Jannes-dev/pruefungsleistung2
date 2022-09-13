@@ -58,7 +58,9 @@ class LocalString extends Translations {
           'Password' : 'Passwort',
           'Confirmation' : 'Passwort bestätigen',
           'delete course' : 'Kurs entfernen',
-          'save' : 'Speichern'
+          'save' : 'Speichern',
+          'select course' : 'Kurs auswählen',
+          'Enter password again' : 'Geben Sie ihr Passwort erneut ein',
 
 
 
