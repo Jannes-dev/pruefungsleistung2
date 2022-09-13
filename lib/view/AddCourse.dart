@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pruefungsleistung/structure/Course.dart';
 import 'package:pruefungsleistung/structure/goal.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
 import 'package:pruefungsleistung/view/ViewCourses.dart';

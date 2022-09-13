@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
 import 'package:get/get.dart';
 import 'package:pruefungsleistung/view/AddCourse.dart';
+import 'package:pruefungsleistung/view/EditCourseView.dart';
 import 'package:pruefungsleistung/view/HomePage.dart';
 
 import '../structure/Course.dart';
@@ -79,7 +80,9 @@ class _ViewCourses extends State<ViewCourses>{
                       child: Column(
                         children: [
                           IconButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (_) => EditCourseView(_role, course)));
+                              },
                               icon: Icon(Icons.edit, color: Colors.black54,)),
                           IconButton(
                             onPressed: (){
