@@ -72,7 +72,7 @@ class _HomePage extends State<HomePage> {
                     ),
                     PopupMenuItem<Menu>(
                       value: Menu.addCourse,
-                      child: Text('Add course'.tr),
+                      child: Text('Course overview'.tr),
                       onTap: (){
 
                     },

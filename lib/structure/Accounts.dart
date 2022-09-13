@@ -8,6 +8,7 @@ class Accounts{
 
   Accounts._Accounts(){
     addAccount('admin@test.de', 'password', 'admin');
+    addAccount('user@test.de', 'password', 'user');
   }
 
   static Accounts createAccounts(){
