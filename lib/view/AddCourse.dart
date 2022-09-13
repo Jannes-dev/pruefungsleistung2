@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pruefungsleistung/structure/goal.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
-import 'HomePage.dart';
+import 'package:pruefungsleistung/view/ViewCourses.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +22,7 @@ class _AddCourse extends State<AddCourse> {
 
   final formKey = GlobalKey<FormState>();
 
-  CoursePlanSystem _coursePlanSystem =
-      CoursePlanSystem.createCoursePlanSystem();
+  CoursePlanSystem _coursePlanSystem = CoursePlanSystem.createCoursePlanSystem();
   String _courseName = "";
   String _instructorName = "";
   int _durationInMinutes = 0;
@@ -133,56 +132,67 @@ class _AddCourse extends State<AddCourse> {
                   },
                 ),
               ),
-            Container(
-              height: 50,
-              width: 250,
-              decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
-              child: TextButton(
-                child:  Text(
-                  'Add course'.tr,
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                ),
-                onPressed: () {
-                  final isValid = formKey.currentState?.validate();
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 50,
+                width: 250,
+                decoration: BoxDecoration(
+                    color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+                child: TextButton(
+                  child:  Text(
+                    'Add course'.tr,
+                    style: TextStyle(color: Colors.white, fontSize: 25),
+                  ),
+                  onPressed: () {
+                    final isValid = formKey.currentState?.validate();
 
-                  if(isValid!) {
-                    formKey.currentState?.save();
-                    showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) => AlertDialog(
-                          title:  Text('Course has been added'.tr),
-                          content: Text("$_courseName, $_instructorName, $_durationInMinutes minutes"),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => AddCourse(_role))),
-                              child:  Text('add another course'.tr),
-                            ),
-                            TextButton(
-                              onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => HomePage(_role))),
-                              child:  Text('return to week plan'.tr),
-                            ),
-                          ],
-                        ));
-                    _selectedGoals.clear();
-                    for (Goal goal in _allGoals) {
-                      if (_checkedGoals[goal] == true) {
-                        _selectedGoals.add(goal);
+                    if(isValid!) {
+                      formKey.currentState?.save();
+                      showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title:  Text('Course has been added'.tr),
+                            content: Text("$_courseName, $_instructorName, $_durationInMinutes minutes"),
+                            actions: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextButton(
+                                  onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => AddCourse(_role))),
+                                  child:  Text('add another course'.tr,
+                                    style: TextStyle(fontSize: 17.5),),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextButton(
+                                  onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => ViewCourses(_role))),
+                                  child:  Text('return to all courses'.tr,
+                                    style: TextStyle(fontSize: 17.5),),
+                                ),
+                              ),
+                            ],
+                          ));
+                      _selectedGoals.clear();
+                      for (Goal goal in _allGoals) {
+                        if (_checkedGoals[goal] == true) {
+                          _selectedGoals.add(goal);
+                        }
                       }
+                      _coursePlanSystem.addCourse(
+                          _courseName,
+                          _instructorName,
+                          _durationInMinutes,
+                          _selectedGoals);
                     }
-                    _coursePlanSystem.addCourse(
-                        _courseName,
-                        _instructorName,
-                        _durationInMinutes,
-                        _selectedGoals);
-                  }
-                },
+                  },
+                ),
               ),
             ),
           ],

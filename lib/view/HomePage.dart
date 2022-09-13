@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
 import 'package:get/get.dart';
+import 'package:pruefungsleistung/view/ViewCourses.dart';
 import '../structure/CoursePlan.dart';
-import 'AddCourse.dart';
+
 import 'WeeklyCoursePlanView.dart';
 
 enum Menu { addWeekPlan, addCourse}
@@ -34,6 +35,7 @@ class _HomePage extends State<HomePage> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text(
             'Weekly schedule'.tr,
             style: TextStyle(fontSize: 26),
@@ -59,7 +61,7 @@ class _HomePage extends State<HomePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => AddCourse(_role))
+                              builder: (_) => ViewCourses(_role))
                       );
                     }
                   },
@@ -104,7 +106,7 @@ class _HomePage extends State<HomePage> {
                             decoration: const BoxDecoration(
                                 color: Colors.blue,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
+                                    BorderRadius.all(Radius.circular(15))),
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,17 +127,26 @@ class _HomePage extends State<HomePage> {
                                           builder: (BuildContext context) => AlertDialog(
                                             title: Text('${'Delete week'.tr} ${coursePlan.getWeekNumber()}?'),
                                             actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(context),
-                                                child: Text ('cancel'.tr, style: TextStyle(fontWeight: FontWeight.bold)),
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: TextButton(
+                                                  onPressed: () => Navigator.pop(context),
+                                                  child: Text ('cancel'.tr, style: TextStyle(fontWeight: FontWeight.bold,
+                                                  fontSize: 17.5),
+                                                  ),
+                                                ),
                                               ),
-                                              TextButton(
-                                                onPressed: () {
-                                                  _coursePlanSystem.deleteCoursePlan(coursePlan.getWeekNumber());
-                                                  setState(() {});
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text ('submit'.tr),
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: TextButton(
+                                                  onPressed: () {
+                                                    _coursePlanSystem.deleteCoursePlan(coursePlan.getWeekNumber());
+                                                    setState(() {});
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text ('submit'.tr,
+                                                    style: TextStyle(fontSize: 17.5),),
+                                                ),
                                               ),
                                             ],
                                           )

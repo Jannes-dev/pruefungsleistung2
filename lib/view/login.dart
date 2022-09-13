@@ -81,7 +81,6 @@ class _LoginState extends State<Login> {
                   ),
                   onSaved: (value) {
                     _userPassword = value!;
-                    print(_userPassword);
                   },
                 ),
               ),
@@ -135,7 +134,7 @@ class _LoginState extends State<Login> {
                                   RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius:
-                                      BorderRadius.circular(18.0)))),
+                                      BorderRadius.circular(20.0)))),
                           onPressed: () {
                             var locale = Locale('en', 'US');
                             Get.updateLocale(locale);
@@ -169,7 +168,6 @@ class _LoginState extends State<Login> {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (_) => AddAccountView()));
-
                       },
                       child: Text('Create Account'.tr)
                   )

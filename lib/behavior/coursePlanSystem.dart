@@ -1,7 +1,7 @@
 import 'package:pruefungsleistung/structure/Course.dart';
 import 'package:pruefungsleistung/structure/CoursePlan.dart';
 import 'package:pruefungsleistung/structure/goal.dart';
-import 'package:get/get.dart';
+
 
 class CoursePlanSystem{
   String test = '';
@@ -36,7 +36,6 @@ class CoursePlanSystem{
   void addCourse(String name, String trainer, int durationInMinutes, List<Goal> goals){
     Course course = new Course(name, trainer, durationInMinutes, goals);
     _courses[course.getId()] = course;
-    print(course);
   }
 
   void deleteCoursePlan(int weekNumber){ //TODO WeekNumber löschen und Map neu sortieren
