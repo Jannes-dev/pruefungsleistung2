@@ -1,6 +1,8 @@
 import 'package:pruefungsleistung/structure/Course.dart';
 import 'package:pruefungsleistung/structure/CoursePlan.dart';
+import 'package:pruefungsleistung/structure/TimeSlot.dart';
 import 'package:pruefungsleistung/structure/goal.dart';
+import 'package:pruefungsleistung/structure/weekday.dart';
 
 
 class CoursePlanSystem{
@@ -12,7 +14,6 @@ class CoursePlanSystem{
   static int _weekNumberCounter = 1;
 
   CoursePlanSystem._CoursePlanSystem() {
-    addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan();
 
     addCourse('Yoga', 'Maria Mueller', 60, [Goal.stretch, Goal.relax]);
     addCourse('Pilates', 'Meike Meier', 45, [Goal.strength, Goal.stamina]);
@@ -25,15 +26,27 @@ class CoursePlanSystem{
     addCourse('Judo', 'Thorsten Legat', 60, [Goal.fun, Goal.strength]);
     addCourse('Self defence', 'Carsten Stahl', 60, [Goal.fun, Goal.relax]);
 
+    addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan(); addCoursePlan();
+    getWeekPlan()[1].addCourseToCoursePlan(Weekday.monday, TimeSlot.midday, getCourses()[1]);
+    getWeekPlan()[1].addCourseToCoursePlan(Weekday.tuesday, TimeSlot.midday, getCourses()[5]);
+    getWeekPlan()[1].addCourseToCoursePlan(Weekday.friday, TimeSlot.midday, getCourses()[8]);
+    getWeekPlan()[2].addCourseToCoursePlan(Weekday.monday, TimeSlot.midday, getCourses()[1]);
+    getWeekPlan()[3].addCourseToCoursePlan(Weekday.monday, TimeSlot.midday, getCourses()[4]);
+    getWeekPlan()[3].addCourseToCoursePlan(Weekday.tuesday, TimeSlot.midday, getCourses()[5]);
+    getWeekPlan()[3].addCourseToCoursePlan(Weekday.thursday, TimeSlot.midday, getCourses()[9]);
+    getWeekPlan()[4].addCourseToCoursePlan(Weekday.monday, TimeSlot.midday, getCourses()[4]);
+    getWeekPlan()[4].addCourseToCoursePlan(Weekday.tuesday, TimeSlot.lateAfternoon, getCourses()[5]);
+    getWeekPlan()[4].addCourseToCoursePlan(Weekday.thursday, TimeSlot.midday, getCourses()[10]);
 
   }
+
 
   static CoursePlanSystem createCoursePlanSystem(){
     return _coursePlanSystem;
   }
 
   void addCoursePlan(){
-    CoursePlan coursePlan = new CoursePlan(_weekNumberCounter);
+    CoursePlan coursePlan = CoursePlan(_weekNumberCounter);
     _weekPlan[_weekNumberCounter] = coursePlan;
     _weekNumberCounter++;
   }

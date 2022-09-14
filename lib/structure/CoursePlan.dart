@@ -1,3 +1,5 @@
+import 'package:pruefungsleistung/behavior/coursePlanSystem.dart';
+
 import 'Course.dart';
 import 'goal.dart';
 import 'weekday.dart';
